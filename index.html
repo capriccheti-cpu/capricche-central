@@ -90,10 +90,13 @@
      ===================================================================== */
   header{
     background: var(--vermelho-principal);
-    padding: 30px 20px 24px;
-    text-align:center;
+    padding: 34px 20px 30px;
     position:relative;
     overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
   }
   /* blob orgânico decorativo, opacidade baixa, apenas textura */
   header::before{
@@ -114,30 +117,14 @@
     opacity:0.09;
     border-radius:58% 42% 37% 63% / 55% 45% 55% 45%;
   }
+  /* Logo — único elemento do cabeçalho (já contém o nome "Capricche" em
+     branco na própria arte), por isso não repetimos o nome em texto */
   header .selo{
     position:relative;
     display:block;
-    width:80px;
-    height:64px;
-    max-width:80px;
-    max-height:64px;
-    object-fit:contain;
-    margin:0 auto 10px;
-    filter: drop-shadow(0 4px 8px rgba(42,37,34,0.25));
-  }
-  header h1{
-    position:relative;
-    color: var(--branco-puro);
-    font-size:1.5rem;
-    letter-spacing:.5px;
-    font-weight:700;
-  }
-  header p{
-    position:relative;
-    color: var(--dourado-claro);
-    font-size:.85rem;
-    margin-top:4px;
-    letter-spacing:.5px;
+    width:150px;
+    height:auto;
+    filter: drop-shadow(0 4px 10px rgba(42,37,34,0.3));
   }
   .faixa{ height:6px; background: var(--dourado-ambar); }
 
@@ -157,6 +144,15 @@
     font-size:.88rem;
     margin-bottom:24px;
     line-height:1.4;
+  }
+  .central-label{
+    text-align:center;
+    color: var(--vermelho-principal);
+    font-size:.72rem;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:1.2px;
+    margin-bottom:6px;
   }
 
   /* =====================================================================
@@ -302,13 +298,12 @@
      CABEÇALHO
      =================================================================== -->
 <header>
-  <img class="selo" src="logo.png" alt="Capricche" width="80" height="64">
-  <h1>Capricche</h1>
-  <p>Central de Acesso · Estação de Lanches</p>
+  <img class="selo" src="logo.png" alt="Capricche" width="150" height="119">
 </header>
 <div class="faixa"></div>
 
 <main>
+  <p class="central-label">Central de Acesso · Capricche</p>
   <p class="instrucao">Escolha abaixo o que deseja visualizar ou preencher.</p>
 
   <!-- =================================================================
@@ -385,7 +380,7 @@
     <a class="card--formulario --terracota" href="https://forms.office.com/Pages/ResponsePage.aspx?id=QLz9PW6Tb0Ca04Vt3EQPqqA3GNYMvhJAom77RfjCtEBUOUZUNjdHN1hTWjFEMDI5WllaUjlDWlFHMC4u&origin=QRCode" target="_blank" rel="noopener">
       <span class="card__icone">📢</span>
       <span class="card__texto">
-        <span class="card__titulo">Comunique</span>
+        <span class="card__titulo">Comunique</span><br>
         <span class="card__desc">Canal de comunicação interna</span>
       </span>
       <span class="card__seta">›</span>
@@ -394,7 +389,7 @@
     <a class="card--formulario --vinho" href="https://forms.office.com/r/TEnEk0DMWU" target="_blank" rel="noopener">
       <span class="card__icone">💧</span>
       <span class="card__texto">
-        <span class="card__titulo">Formulário de Vazamentos</span>
+        <span class="card__titulo">Formulário de Vazamentos</span><br>
         <span class="card__desc">Reportar vazamentos</span>
       </span>
       <span class="card__seta">›</span>
@@ -403,7 +398,7 @@
     <a class="card--formulario --ambar" href="https://forms.office.com/Pages/ResponsePage.aspx?id=QLz9PW6Tb0Ca04Vt3EQPqjuFSyqY3bBHiTX9Rf5HAMVURDdMN1VLSFJXMEc2WFBJQllHSVg1T1A0Mi4u" target="_blank" rel="noopener">
       <span class="card__icone">🛡️</span>
       <span class="card__texto">
-        <span class="card__titulo">Relato de Segurança do Alimento</span>
+        <span class="card__titulo">Relato de Segurança do Alimento</span><br>
         <span class="card__desc">Registrar ocorrência</span>
       </span>
       <span class="card__seta">›</span>
@@ -412,7 +407,7 @@
     <a class="card--formulario" href="https://forms.office.com/r/XXVRgshEMC?origin=QRCode" target="_blank" rel="noopener">
       <span class="card__icone">🎧</span>
       <span class="card__texto">
-        <span class="card__titulo">SAC</span>
+        <span class="card__titulo">SAC</span><br>
         <span class="card__desc">Serviço de Atendimento</span>
       </span>
       <span class="card__seta">›</span>
@@ -426,7 +421,8 @@
      RODAPÉ
      =================================================================== -->
 <footer>
-  Central de Acesso · <strong>Capricche</strong>
+  Central de Acesso · <strong>Capricche</strong><br>
+
 </footer>
 
 </body>
