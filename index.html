@@ -4,136 +4,307 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Capricche — Central de Acesso</title>
+
+<!--
+  =====================================================================
+  CAPRICCHE — CENTRAL DE ACESSO
+  =====================================================================
+  Página única (hub) acessada via QR Code na estação de lanches.
+  Reúne todos os links de abastecimento por setor e os formulários
+  administrativos da empresa em um só lugar.
+
+  COMO ADICIONAR UM NOVO SETOR DE ABASTECIMENTO:
+  1. Copie um bloco <a class="card card--setor"> inteiro (ver seção
+     "GRID DE SETORES" abaixo).
+  2. Troque o href pelo link do novo setor (?setor=NOME).
+  3. Troque o emoji do <span class="card__icone"> e o texto do título.
+
+  COMO ADICIONAR UM NOVO FORMULÁRIO:
+  1. Copie um bloco <a class="card card--formulario"> inteiro (ver
+     seção "LISTA DE FORMULÁRIOS" abaixo).
+  2. Troque o href, o emoji e os textos de título/descrição.
+  3. Se quiser variar a cor de destaque do card, troque a classe
+     modificadora (--terracota / --vinho / --ambar / --dourado).
+
+  PALETA DE CORES: definida em :root, na seção CSS logo abaixo.
+  Para trocar uma cor em todo o site, basta editar a variável aqui.
+  =====================================================================
+-->
+
 <style>
+  /* =====================================================================
+     1. PALETA DE CORES OFICIAL
+     ===================================================================== */
   :root{
-    --vermelho: #A31E22;
-    --vermelho-escuro: #7A1519;
-    --dourado: #E8B923;
-    --creme: #FBF4E9;
-    --texto: #3A2A1E;
-    --texto-suave: #7A6A5A;
+    /* Primárias */
+    --vermelho-principal: #C21711;
+    --vermelho-escuro:    #A61811;
+    --vermelho-claro:     #F9EEEE;
+
+    --dourado-ambar:      #CD9634;
+    --dourado-escuro:     #A67A28;
+    --dourado-claro:      #FBF3E0;
+
+    /* Complementares (identidade por seção/card) */
+    --terracota:          #C45B2A;
+    --terracota-escuro:   #A04820;
+    --terracota-claro:    #FAEEE8;
+
+    --vinho:              #7A1F1A;
+    --vinho-claro:        #F5EAEA;
+
+    --ambar:              #D4881A;
+
+    /* Neutros quentes */
+    --branco-puro:        #FFFFFF;
+    --branco-quente:      #F7F4F0;
+    --pedra-clara:        #EDE8E2;
+    --creme:              #FAF7F3;
+    --pergaminho:         #F2EDE5;
+
+    --tinta:              #2A2522; /* texto principal */
+    --corpo:              #5C5450; /* texto secundário */
+    --muted:              #9C948E; /* texto auxiliar */
+
+    /* Sombra suave padrão (blur 12-14pt, opacidade 7-8%) */
+    --sombra: 0 4px 14px rgba(42, 37, 34, 0.08);
   }
+
+  /* =====================================================================
+     2. RESET E BASE
+     ===================================================================== */
   *{margin:0;padding:0;box-sizing:border-box;}
   html,body{height:100%;}
   body{
     font-family: 'Segoe UI', Roboto, -apple-system, sans-serif;
-    background: var(--creme);
-    color: var(--texto);
+    background: var(--branco-quente);
+    color: var(--tinta);
     min-height:100vh;
     display:flex;
     flex-direction:column;
   }
+
+  /* =====================================================================
+     3. CABEÇALHO
+     Fundo vermelho principal + textura orgânica sutil (opacidade ~7%)
+     ===================================================================== */
   header{
-    background: var(--vermelho);
-    padding: 28px 20px 22px;
+    background: var(--vermelho-principal);
+    padding: 30px 20px 24px;
     text-align:center;
     position:relative;
+    overflow:hidden;
+  }
+  /* blob orgânico decorativo, opacidade baixa, apenas textura */
+  header::before{
+    content:"";
+    position:absolute;
+    top:-60px; right:-50px;
+    width:180px; height:180px;
+    background: var(--branco-puro);
+    opacity:0.07;
+    border-radius:42% 58% 63% 37% / 41% 44% 56% 59%;
+  }
+  header::after{
+    content:"";
+    position:absolute;
+    bottom:-70px; left:-40px;
+    width:160px; height:160px;
+    background: var(--dourado-ambar);
+    opacity:0.09;
+    border-radius:58% 42% 37% 63% / 55% 45% 55% 45%;
   }
   header .selo{
-    width:52px;height:52px;
-    background:var(--dourado);
+    position:relative;
+    width:54px;height:54px;
+    background: var(--dourado-ambar);
     border-radius:50%;
     display:flex;align-items:center;justify-content:center;
     margin:0 auto 10px;
     font-size:26px;
-    box-shadow: 0 2px 6px rgba(0,0,0,.25);
+    box-shadow: var(--sombra);
   }
   header h1{
-    color:#fff;
+    position:relative;
+    color: var(--branco-puro);
     font-size:1.5rem;
     letter-spacing:.5px;
     font-weight:700;
   }
   header p{
-    color:#F4D9A8;
+    position:relative;
+    color: var(--dourado-claro);
     font-size:.85rem;
     margin-top:4px;
     letter-spacing:.5px;
   }
-  .faixa{
-    height:6px;
-    background: var(--dourado);
-  }
+  .faixa{ height:6px; background: var(--dourado-ambar); }
+
+  /* =====================================================================
+     4. CONTAINER PRINCIPAL
+     ===================================================================== */
   main{
     flex:1;
-    max-width:480px;
+    max-width:520px;
     width:100%;
     margin:0 auto;
     padding: 26px 18px 10px;
   }
   .instrucao{
     text-align:center;
-    color:var(--texto-suave);
+    color: var(--corpo);
     font-size:.88rem;
-    margin-bottom:22px;
+    margin-bottom:24px;
     line-height:1.4;
   }
-  .grupo-titulo{
+
+  /* =====================================================================
+     5. TÍTULOS DE SEÇÃO (com micro-dash antes do texto)
+     ===================================================================== */
+  .secao-titulo{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin: 26px 0 12px 2px;
+  }
+  .secao-titulo:first-of-type{ margin-top:0; }
+  .secao-titulo .dash{
+    width:22px; height:4px;
+    background: var(--vermelho-principal);
+    border-radius:3px;
+    flex-shrink:0;
+  }
+  .secao-titulo span{
     font-size:.72rem;
     font-weight:700;
-    color:var(--vermelho);
+    color: var(--vermelho-principal);
     text-transform:uppercase;
-    letter-spacing:1px;
-    margin: 24px 0 10px 4px;
+    letter-spacing:1.2px;
   }
-  .grupo-titulo:first-of-type{margin-top:0;}
-  .card{
+
+  /* =====================================================================
+     6. GRID DE SETORES (abastecimento) — 2 colunas
+     ===================================================================== */
+  .grid-setores{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:10px;
+    margin-bottom:8px;
+  }
+  .card--setor{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:8px;
+    background: var(--branco-puro);
+    border:1px solid var(--pedra-clara);
+    border-left:4px solid var(--vermelho-principal);
+    border-radius:10px;
+    padding:14px;
+    text-decoration:none;
+    color: var(--tinta);
+    box-shadow: var(--sombra);
+    transition: transform .15s ease;
+  }
+  .card--setor:active{ transform: scale(.97); }
+  .card--setor .card__icone{
+    width:36px;height:36px;
+    background: var(--vermelho-claro);
+    border-radius:8px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:17px;
+  }
+  .card--setor .card__titulo{
+    font-weight:600;
+    font-size:.86rem;
+    line-height:1.25;
+  }
+  .card--setor .card__desc{
+    font-size:.7rem;
+    color: var(--muted);
+  }
+
+  /* =====================================================================
+     7. LISTA DE FORMULÁRIOS — 1 coluna, cor de destaque variável
+     ===================================================================== */
+  .lista-formularios{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    margin-bottom:10px;
+  }
+  .card--formulario{
     display:flex;
     align-items:center;
     gap:14px;
-    background:#fff;
-    border:1px solid #EFE1C6;
-    border-left:5px solid var(--vermelho);
+    background: var(--branco-puro);
+    border:1px solid var(--pedra-clara);
+    border-left:4px solid var(--dourado-ambar);
     border-radius:10px;
     padding:14px 16px;
-    margin-bottom:10px;
     text-decoration:none;
-    color:var(--texto);
-    box-shadow: 0 1px 3px rgba(90,60,20,.08);
-    transition: transform .15s ease, box-shadow .15s ease;
+    color: var(--tinta);
+    box-shadow: var(--sombra);
+    transition: transform .15s ease;
   }
-  .card:active{
-    transform: scale(.98);
-    box-shadow: 0 1px 2px rgba(90,60,20,.1);
-  }
-  .card .icone{
+  .card--formulario:active{ transform: scale(.98); }
+  .card--formulario .card__icone{
     width:40px;height:40px;
     flex-shrink:0;
-    background: var(--creme);
+    background: var(--dourado-claro);
     border-radius:9px;
     display:flex;align-items:center;justify-content:center;
     font-size:19px;
   }
-  .card .texto{flex:1;min-width:0;}
-  .card .titulo{
+  .card--formulario .card__texto{ flex:1; min-width:0; }
+  .card--formulario .card__titulo{
     font-weight:600;
     font-size:.93rem;
     margin-bottom:1px;
   }
-  .card .desc{
+  .card--formulario .card__desc{
     font-size:.76rem;
-    color:var(--texto-suave);
+    color: var(--muted);
   }
-  .card .seta{
-    color:var(--dourado);
+  .card--formulario .card__seta{
+    color: var(--dourado-ambar);
     font-size:1.2rem;
     flex-shrink:0;
   }
-  .card.formulario{border-left-color: var(--dourado);}
+
+  /* Variações de cor de destaque por formulário (identidade própria) */
+  .card--formulario.--terracota{ border-left-color: var(--terracota); }
+  .card--formulario.--terracota .card__icone{ background: var(--terracota-claro); }
+  .card--formulario.--terracota .card__seta{ color: var(--terracota); }
+
+  .card--formulario.--vinho{ border-left-color: var(--vinho); }
+  .card--formulario.--vinho .card__icone{ background: var(--vinho-claro); }
+  .card--formulario.--vinho .card__seta{ color: var(--vinho); }
+
+  .card--formulario.--ambar{ border-left-color: var(--ambar); }
+  .card--formulario.--ambar .card__icone{ background: var(--dourado-claro); }
+  .card--formulario.--ambar .card__seta{ color: var(--ambar); }
+
+  /* =====================================================================
+     8. RODAPÉ
+     ===================================================================== */
   footer{
-    background: var(--vermelho-escuro);
-    color:#F4D9A8;
+    background: var(--vinho);
+    color: var(--dourado-claro);
     text-align:center;
     padding:16px 12px 20px;
     font-size:.75rem;
     letter-spacing:.3px;
-    margin-top:10px;
+    margin-top:14px;
   }
-  footer strong{color:#fff;}
+  footer strong{ color: var(--branco-puro); }
 </style>
 </head>
 <body>
 
+<!-- ===================================================================
+     CABEÇALHO
+     =================================================================== -->
 <header>
   <div class="selo">🍪</div>
   <h1>Capricche</h1>
@@ -144,96 +315,129 @@
 <main>
   <p class="instrucao">Escolha abaixo o que deseja visualizar ou preencher.</p>
 
-  <div class="grupo-titulo">Abastecimento de Lanches</div>
+  <!-- =================================================================
+       GRID DE SETORES (abastecimento de lanches) — 2 colunas
+       Para adicionar um novo setor, copie um <a class="card--setor">
+       ================================================================= -->
+  <div class="secao-titulo"><span class="dash"></span><span>Abastecimento de Lanches</span></div>
 
-  <a class="card" href="https://capriccheti-cpu.github.io/lanches-capricche/?setor=ADM" target="_blank" rel="noopener">
-    <div class="icone">🏢</div>
-    <div class="texto"><div class="titulo">Administrativo (ADM)</div><div class="desc">Status da estação</div></div>
-    <div class="seta">›</div>
-  </a>
+  <div class="grid-setores">
 
-  <a class="card" href="https://capriccheti-cpu.github.io/lanches-capricche/?setor=RH" target="_blank" rel="noopener">
-    <div class="icone">👥</div>
-    <div class="texto"><div class="titulo">Recursos Humanos (RH)</div><div class="desc">Status da estação</div></div>
-    <div class="seta">›</div>
-  </a>
+    <a class="card--setor" href="https://capriccheti-cpu.github.io/lanches-capricche/?setor=ADM" target="_blank" rel="noopener">
+      <span class="card__icone">🏢</span>
+      <span class="card__titulo">Administrativo (ADM)</span>
+      <span class="card__desc">Status da estação</span>
+    </a>
 
-  <a class="card" href="https://capriccheti-cpu.github.io/lanches-capricche/?setor=PRODUCAO" target="_blank" rel="noopener">
-    <div class="icone">🏭</div>
-    <div class="texto"><div class="titulo">Produção</div><div class="desc">Status da estação</div></div>
-    <div class="seta">›</div>
-  </a>
+    <a class="card--setor" href="https://capriccheti-cpu.github.io/lanches-capricche/?setor=RH" target="_blank" rel="noopener">
+      <span class="card__icone">👥</span>
+      <span class="card__titulo">Recursos Humanos (RH)</span>
+      <span class="card__desc">Status da estação</span>
+    </a>
 
-  <a class="card" href="https://capriccheti-cpu.github.io/lanches-capricche/?setor=PAF" target="_blank" rel="noopener">
-    <div class="icone">🍪</div>
-    <div class="texto"><div class="titulo">PAF</div><div class="desc">Status da estação</div></div>
-    <div class="seta">›</div>
-  </a>
+    <a class="card--setor" href="https://capriccheti-cpu.github.io/lanches-capricche/?setor=PRODUCAO" target="_blank" rel="noopener">
+      <span class="card__icone">🏭</span>
+      <span class="card__titulo">Produção</span>
+      <span class="card__desc">Status da estação</span>
+    </a>
 
-  <a class="card" href="https://capriccheti-cpu.github.io/lanches-capricche/?setor=EXPEDICAO" target="_blank" rel="noopener">
-    <div class="icone">📦</div>
-    <div class="texto"><div class="titulo">Expedição</div><div class="desc">Status da estação</div></div>
-    <div class="seta">›</div>
-  </a>
+    <a class="card--setor" href="https://capriccheti-cpu.github.io/lanches-capricche/?setor=PAF" target="_blank" rel="noopener">
+      <span class="card__icone">🍪</span>
+      <span class="card__titulo">PAF</span>
+      <span class="card__desc">Status da estação</span>
+    </a>
 
-  <a class="card" href="https://capriccheti-cpu.github.io/lanches-capricche/?setor=INDUSTRIAL" target="_blank" rel="noopener">
-    <div class="icone">⚙️</div>
-    <div class="texto"><div class="titulo">Industrial</div><div class="desc">Status da estação</div></div>
-    <div class="seta">›</div>
-  </a>
+    <a class="card--setor" href="https://capriccheti-cpu.github.io/lanches-capricche/?setor=EXPEDICAO" target="_blank" rel="noopener">
+      <span class="card__icone">📦</span>
+      <span class="card__titulo">Expedição</span>
+      <span class="card__desc">Status da estação</span>
+    </a>
 
-  <a class="card" href="https://capriccheti-cpu.github.io/lanches-capricche/?setor=ESTOQUE" target="_blank" rel="noopener">
-    <div class="icone">🗄️</div>
-    <div class="texto"><div class="titulo">Estoque</div><div class="desc">Status da estação</div></div>
-    <div class="seta">›</div>
-  </a>
+    <a class="card--setor" href="https://capriccheti-cpu.github.io/lanches-capricche/?setor=INDUSTRIAL" target="_blank" rel="noopener">
+      <span class="card__icone">⚙️</span>
+      <span class="card__titulo">Industrial</span>
+      <span class="card__desc">Status da estação</span>
+    </a>
 
-  <a class="card" href="https://capriccheti-cpu.github.io/lanches-capricche/?setor=OBRAS" target="_blank" rel="noopener">
-    <div class="icone">🚧</div>
-    <div class="texto"><div class="titulo">Obras</div><div class="desc">Status da estação</div></div>
-    <div class="seta">›</div>
-  </a>
+    <a class="card--setor" href="https://capriccheti-cpu.github.io/lanches-capricche/?setor=ESTOQUE" target="_blank" rel="noopener">
+      <span class="card__icone">🗄️</span>
+      <span class="card__titulo">Estoque</span>
+      <span class="card__desc">Status da estação</span>
+    </a>
 
-  <a class="card" href="https://capriccheti-cpu.github.io/lanches-capricche/?setor=CENTRALDERESIDUOS" target="_blank" rel="noopener">
-    <div class="icone">♻️</div>
-    <div class="texto"><div class="titulo">Central de Resíduos</div><div class="desc">Status da estação</div></div>
-    <div class="seta">›</div>
-  </a>
+    <a class="card--setor" href="https://capriccheti-cpu.github.io/lanches-capricche/?setor=OBRAS" target="_blank" rel="noopener">
+      <span class="card__icone">🚧</span>
+      <span class="card__titulo">Obras</span>
+      <span class="card__desc">Status da estação</span>
+    </a>
 
-  <a class="card" href="https://capriccheti-cpu.github.io/lanches-capricche/?setor=MOTORISTAS" target="_blank" rel="noopener">
-    <div class="icone">🚚</div>
-    <div class="texto"><div class="titulo">Motoristas</div><div class="desc">Status da estação</div></div>
-    <div class="seta">›</div>
-  </a>
+    <a class="card--setor" href="https://capriccheti-cpu.github.io/lanches-capricche/?setor=CENTRALDERESIDUOS" target="_blank" rel="noopener">
+      <span class="card__icone">♻️</span>
+      <span class="card__titulo">Central de Resíduos</span>
+      <span class="card__desc">Status da estação</span>
+    </a>
 
-  <div class="grupo-titulo">Formulários</div>
+    <a class="card--setor" href="https://capriccheti-cpu.github.io/lanches-capricche/?setor=MOTORISTAS" target="_blank" rel="noopener">
+      <span class="card__icone">🚚</span>
+      <span class="card__titulo">Motoristas</span>
+      <span class="card__desc">Status da estação</span>
+    </a>
 
-  <a class="card formulario" href="https://forms.office.com/Pages/ResponsePage.aspx?id=QLz9PW6Tb0Ca04Vt3EQPqqA3GNYMvhJAom77RfjCtEBUOUZUNjdHN1hTWjFEMDI5WllaUjlDWlFHMC4u&origin=QRCode" target="_blank" rel="noopener">
-    <div class="icone">📢</div>
-    <div class="texto"><div class="titulo">Comunique</div><div class="desc">Canal de comunicação interna</div></div>
-    <div class="seta">›</div>
-  </a>
+  </div>
 
-  <a class="card formulario" href="https://forms.office.com/r/TEnEk0DMWU" target="_blank" rel="noopener">
-    <div class="icone">💧</div>
-    <div class="texto"><div class="titulo">Formulário de Vazamentos</div><div class="desc">Reportar vazamentos</div></div>
-    <div class="seta">›</div>
-  </a>
+  <!-- =================================================================
+       LISTA DE FORMULÁRIOS — 1 coluna
+       Para adicionar um novo formulário, copie um <a class="card--formulario">
+       As classes --terracota / --vinho / --ambar / (padrão dourado) dão
+       identidade visual diferente a cada formulário.
+       ================================================================= -->
+  <div class="secao-titulo"><span class="dash"></span><span>Formulários</span></div>
 
-  <a class="card formulario" href="https://forms.office.com/Pages/ResponsePage.aspx?id=QLz9PW6Tb0Ca04Vt3EQPqjuFSyqY3bBHiTX9Rf5HAMVURDdMN1VLSFJXMEc2WFBJQllHSVg1T1A0Mi4u" target="_blank" rel="noopener">
-    <div class="icone">🛡️</div>
-    <div class="texto"><div class="titulo">Relato de Segurança do Alimento</div><div class="desc">Registrar ocorrência</div></div>
-    <div class="seta">›</div>
-  </a>
+  <div class="lista-formularios">
 
-  <a class="card formulario" href="https://forms.office.com/r/XXVRgshEMC?origin=QRCode" target="_blank" rel="noopener">
-    <div class="icone">🎧</div>
-    <div class="texto"><div class="titulo">SAC</div><div class="desc">Serviço de Atendimento</div></div>
-    <div class="seta">›</div>
-  </a>
+    <a class="card--formulario --terracota" href="https://forms.office.com/Pages/ResponsePage.aspx?id=QLz9PW6Tb0Ca04Vt3EQPqqA3GNYMvhJAom77RfjCtEBUOUZUNjdHN1hTWjFEMDI5WllaUjlDWlFHMC4u&origin=QRCode" target="_blank" rel="noopener">
+      <span class="card__icone">📢</span>
+      <span class="card__texto">
+        <span class="card__titulo">Comunique</span>
+        <span class="card__desc">Canal de comunicação interna</span>
+      </span>
+      <span class="card__seta">›</span>
+    </a>
+
+    <a class="card--formulario --vinho" href="https://forms.office.com/r/TEnEk0DMWU" target="_blank" rel="noopener">
+      <span class="card__icone">💧</span>
+      <span class="card__texto">
+        <span class="card__titulo">Formulário de Vazamentos</span>
+        <span class="card__desc">Reportar vazamentos</span>
+      </span>
+      <span class="card__seta">›</span>
+    </a>
+
+    <a class="card--formulario --ambar" href="https://forms.office.com/Pages/ResponsePage.aspx?id=QLz9PW6Tb0Ca04Vt3EQPqjuFSyqY3bBHiTX9Rf5HAMVURDdMN1VLSFJXMEc2WFBJQllHSVg1T1A0Mi4u" target="_blank" rel="noopener">
+      <span class="card__icone">🛡️</span>
+      <span class="card__texto">
+        <span class="card__titulo">Relato de Segurança do Alimento</span>
+        <span class="card__desc">Registrar ocorrência</span>
+      </span>
+      <span class="card__seta">›</span>
+    </a>
+
+    <a class="card--formulario" href="https://forms.office.com/r/XXVRgshEMC?origin=QRCode" target="_blank" rel="noopener">
+      <span class="card__icone">🎧</span>
+      <span class="card__texto">
+        <span class="card__titulo">SAC</span>
+        <span class="card__desc">Serviço de Atendimento</span>
+      </span>
+      <span class="card__seta">›</span>
+    </a>
+
+  </div>
 
 </main>
 
+<!-- ===================================================================
+     RODAPÉ
+     =================================================================== -->
 <footer>
   Central de Acesso · <strong>Capricche</strong><br>
   Aponte a câmera e escolha uma opção
