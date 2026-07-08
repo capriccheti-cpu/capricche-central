@@ -116,9 +116,13 @@
   }
   header .selo{
     position:relative;
-    width:76px;height:auto;
-    margin:0 auto 10px;
     display:block;
+    width:80px;
+    height:64px;
+    max-width:80px;
+    max-height:64px;
+    object-fit:contain;
+    margin:0 auto 10px;
     filter: drop-shadow(0 4px 8px rgba(42,37,34,0.25));
   }
   header h1{
@@ -180,45 +184,40 @@
   }
 
   /* =====================================================================
-     6. GRID DE SETORES (abastecimento) — 2 colunas
+     6. GRID DE SETORES (estações de lanches) — 5 colunas
      ===================================================================== */
   .grid-setores{
     display:grid;
-    grid-template-columns: 1fr 1fr;
-    gap:10px;
+    grid-template-columns: repeat(5, 1fr);
+    gap:8px;
     margin-bottom:8px;
   }
   .card--setor{
     display:flex;
     flex-direction:column;
-    align-items:flex-start;
-    gap:8px;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
     background: var(--branco-puro);
     border:1px solid var(--pedra-clara);
-    border-left:4px solid var(--vermelho-principal);
+    border-top:3px solid var(--vermelho-principal);
     border-radius:10px;
-    padding:14px;
+    padding:14px 6px;
     text-decoration:none;
     color: var(--tinta);
     box-shadow: var(--sombra);
     transition: transform .15s ease;
+    text-align:center;
   }
   .card--setor:active{ transform: scale(.97); }
   .card--setor .card__icone{
-    width:36px;height:36px;
-    background: var(--vermelho-claro);
-    border-radius:8px;
-    display:flex;align-items:center;justify-content:center;
-    font-size:17px;
+    font-size:24px;
+    line-height:1;
   }
   .card--setor .card__titulo{
     font-weight:600;
-    font-size:.86rem;
-    line-height:1.25;
-  }
-  .card--setor .card__desc{
-    font-size:.7rem;
-    color: var(--muted);
+    font-size:.72rem;
+    line-height:1.2;
   }
 
   /* =====================================================================
@@ -303,7 +302,7 @@
      CABEÇALHO
      =================================================================== -->
 <header>
-  <img class="selo" src="logo.png" alt="Capricche">
+  <img class="selo" src="logo.png" alt="Capricche" width="80" height="64">
   <h1>Capricche</h1>
   <p>Central de Acesso · Estação de Lanches</p>
 </header>
@@ -313,71 +312,62 @@
   <p class="instrucao">Escolha abaixo o que deseja visualizar ou preencher.</p>
 
   <!-- =================================================================
-       GRID DE SETORES (abastecimento de lanches) — 2 colunas
+       GRID DE SETORES (estações de lanches) — 5 colunas
+       Cards simplificados: apenas emoji + nome do setor.
        Para adicionar um novo setor, copie um <a class="card--setor">
        ================================================================= -->
-  <div class="secao-titulo"><span class="dash"></span><span>Abastecimento de Lanches</span></div>
+  <div class="secao-titulo"><span class="dash"></span><span>Estações de Lanches</span></div>
 
   <div class="grid-setores">
 
     <a class="card--setor" href="https://capriccheti-cpu.github.io/lanches-capricche/?setor=ADM" target="_blank" rel="noopener">
       <span class="card__icone">🏢</span>
-      <span class="card__titulo">Administrativo (ADM)</span>
-      <span class="card__desc">Status da estação</span>
+      <span class="card__titulo">ADM</span>
     </a>
 
     <a class="card--setor" href="https://capriccheti-cpu.github.io/lanches-capricche/?setor=RH" target="_blank" rel="noopener">
       <span class="card__icone">👥</span>
-      <span class="card__titulo">Recursos Humanos (RH)</span>
-      <span class="card__desc">Status da estação</span>
+      <span class="card__titulo">RH</span>
     </a>
 
     <a class="card--setor" href="https://capriccheti-cpu.github.io/lanches-capricche/?setor=PRODUCAO" target="_blank" rel="noopener">
       <span class="card__icone">🏭</span>
       <span class="card__titulo">Produção</span>
-      <span class="card__desc">Status da estação</span>
     </a>
 
     <a class="card--setor" href="https://capriccheti-cpu.github.io/lanches-capricche/?setor=PAF" target="_blank" rel="noopener">
       <span class="card__icone">🍪</span>
       <span class="card__titulo">PAF</span>
-      <span class="card__desc">Status da estação</span>
     </a>
 
     <a class="card--setor" href="https://capriccheti-cpu.github.io/lanches-capricche/?setor=EXPEDICAO" target="_blank" rel="noopener">
       <span class="card__icone">📦</span>
       <span class="card__titulo">Expedição</span>
-      <span class="card__desc">Status da estação</span>
     </a>
 
     <a class="card--setor" href="https://capriccheti-cpu.github.io/lanches-capricche/?setor=INDUSTRIAL" target="_blank" rel="noopener">
       <span class="card__icone">⚙️</span>
       <span class="card__titulo">Industrial</span>
-      <span class="card__desc">Status da estação</span>
     </a>
 
     <a class="card--setor" href="https://capriccheti-cpu.github.io/lanches-capricche/?setor=ESTOQUE" target="_blank" rel="noopener">
       <span class="card__icone">🗄️</span>
       <span class="card__titulo">Estoque</span>
-      <span class="card__desc">Status da estação</span>
     </a>
 
     <a class="card--setor" href="https://capriccheti-cpu.github.io/lanches-capricche/?setor=OBRAS" target="_blank" rel="noopener">
       <span class="card__icone">🚧</span>
       <span class="card__titulo">Obras</span>
-      <span class="card__desc">Status da estação</span>
     </a>
 
     <a class="card--setor" href="https://capriccheti-cpu.github.io/lanches-capricche/?setor=CENTRALDERESIDUOS" target="_blank" rel="noopener">
       <span class="card__icone">♻️</span>
-      <span class="card__titulo">Central de Resíduos</span>
-      <span class="card__desc">Status da estação</span>
+      <span class="card__titulo">Resíduos</span>
     </a>
 
     <a class="card--setor" href="https://capriccheti-cpu.github.io/lanches-capricche/?setor=MOTORISTAS" target="_blank" rel="noopener">
       <span class="card__icone">🚚</span>
       <span class="card__titulo">Motoristas</span>
-      <span class="card__desc">Status da estação</span>
     </a>
 
   </div>
@@ -436,8 +426,7 @@
      RODAPÉ
      =================================================================== -->
 <footer>
-  Central de Acesso · <strong>Capricche</strong><br>
-  Aponte a câmera e escolha uma opção
+  Central de Acesso · <strong>Capricche</strong>
 </footer>
 
 </body>
