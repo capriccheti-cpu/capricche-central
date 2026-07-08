@@ -74,7 +74,7 @@
     color:var(--vermelho);
     text-transform:uppercase;
     letter-spacing:1px;
-    margin: 22px 0 10px 4px;
+    margin: 24px 0 10px 4px;
   }
   .grupo-titulo:first-of-type{margin-top:0;}
   .card{
@@ -85,8 +85,8 @@
     border:1px solid #EFE1C6;
     border-left:5px solid var(--vermelho);
     border-radius:10px;
-    padding:16px 16px;
-    margin-bottom:12px;
+    padding:14px 16px;
+    margin-bottom:10px;
     text-decoration:none;
     color:var(--texto);
     box-shadow: 0 1px 3px rgba(90,60,20,.08);
@@ -97,21 +97,21 @@
     box-shadow: 0 1px 2px rgba(90,60,20,.1);
   }
   .card .icone{
-    width:42px;height:42px;
+    width:40px;height:40px;
     flex-shrink:0;
     background: var(--creme);
     border-radius:9px;
     display:flex;align-items:center;justify-content:center;
-    font-size:20px;
+    font-size:19px;
   }
   .card .texto{flex:1;min-width:0;}
   .card .titulo{
     font-weight:600;
-    font-size:.95rem;
-    margin-bottom:2px;
+    font-size:.93rem;
+    margin-bottom:1px;
   }
   .card .desc{
-    font-size:.78rem;
+    font-size:.76rem;
     color:var(--texto-suave);
   }
   .card .seta{
@@ -127,6 +127,7 @@
     padding:16px 12px 20px;
     font-size:.75rem;
     letter-spacing:.3px;
+    margin-top:10px;
   }
   footer strong{color:#fff;}
 </style>
@@ -147,39 +148,87 @@
 
   <a class="card" href="https://capriccheti-cpu.github.io/lanches-capricche/?setor=ADM" target="_blank" rel="noopener">
     <div class="icone">🏢</div>
-    <div class="texto">
-      <div class="titulo">Setor ADM</div>
-      <div class="desc">Status atual da estação administrativa</div>
-    </div>
+    <div class="texto"><div class="titulo">Administrativo (ADM)</div><div class="desc">Status da estação</div></div>
     <div class="seta">›</div>
   </a>
 
   <a class="card" href="https://capriccheti-cpu.github.io/lanches-capricche/?setor=RH" target="_blank" rel="noopener">
     <div class="icone">👥</div>
-    <div class="texto">
-      <div class="titulo">Setor RH</div>
-      <div class="desc">Status atual da estação de RH</div>
-    </div>
+    <div class="texto"><div class="titulo">Recursos Humanos (RH)</div><div class="desc">Status da estação</div></div>
+    <div class="seta">›</div>
+  </a>
+
+  <a class="card" href="https://capriccheti-cpu.github.io/lanches-capricche/?setor=PRODUCAO" target="_blank" rel="noopener">
+    <div class="icone">🏭</div>
+    <div class="texto"><div class="titulo">Produção</div><div class="desc">Status da estação</div></div>
     <div class="seta">›</div>
   </a>
 
   <a class="card" href="https://capriccheti-cpu.github.io/lanches-capricche/?setor=PAF" target="_blank" rel="noopener">
-    <div class="icone">🏭</div>
-    <div class="texto">
-      <div class="titulo">Setor PAF</div>
-      <div class="desc">Status atual da estação PAF</div>
-    </div>
+    <div class="icone">🍪</div>
+    <div class="texto"><div class="titulo">PAF</div><div class="desc">Status da estação</div></div>
+    <div class="seta">›</div>
+  </a>
+
+  <a class="card" href="https://capriccheti-cpu.github.io/lanches-capricche/?setor=EXPEDICAO" target="_blank" rel="noopener">
+    <div class="icone">📦</div>
+    <div class="texto"><div class="titulo">Expedição</div><div class="desc">Status da estação</div></div>
+    <div class="seta">›</div>
+  </a>
+
+  <a class="card" href="https://capriccheti-cpu.github.io/lanches-capricche/?setor=INDUSTRIAL" target="_blank" rel="noopener">
+    <div class="icone">⚙️</div>
+    <div class="texto"><div class="titulo">Industrial</div><div class="desc">Status da estação</div></div>
+    <div class="seta">›</div>
+  </a>
+
+  <a class="card" href="https://capriccheti-cpu.github.io/lanches-capricche/?setor=ESTOQUE" target="_blank" rel="noopener">
+    <div class="icone">🗄️</div>
+    <div class="texto"><div class="titulo">Estoque</div><div class="desc">Status da estação</div></div>
+    <div class="seta">›</div>
+  </a>
+
+  <a class="card" href="https://capriccheti-cpu.github.io/lanches-capricche/?setor=OBRAS" target="_blank" rel="noopener">
+    <div class="icone">🚧</div>
+    <div class="texto"><div class="titulo">Obras</div><div class="desc">Status da estação</div></div>
+    <div class="seta">›</div>
+  </a>
+
+  <a class="card" href="https://capriccheti-cpu.github.io/lanches-capricche/?setor=CENTRALDERESIDUOS" target="_blank" rel="noopener">
+    <div class="icone">♻️</div>
+    <div class="texto"><div class="titulo">Central de Resíduos</div><div class="desc">Status da estação</div></div>
+    <div class="seta">›</div>
+  </a>
+
+  <a class="card" href="https://capriccheti-cpu.github.io/lanches-capricche/?setor=MOTORISTAS" target="_blank" rel="noopener">
+    <div class="icone">🚚</div>
+    <div class="texto"><div class="titulo">Motoristas</div><div class="desc">Status da estação</div></div>
     <div class="seta">›</div>
   </a>
 
   <div class="grupo-titulo">Formulários</div>
 
-  <a class="card formulario" href="https://forms.office.com/Pages/ResponsePage.aspx?id=QLz9PW6Tb0Ca04Vt3EQPqoWY0RaKhUdHlz8xX6dA-1VURVhMTlk3RUdSUEMwRVZPUEFEVjZVSURaVC4u" target="_blank" rel="noopener">
-    <div class="icone">📝</div>
-    <div class="texto">
-      <div class="titulo">Registrar Abastecimento</div>
-      <div class="desc">Formulário para registrar reposição dos potes</div>
-    </div>
+  <a class="card formulario" href="https://forms.office.com/Pages/ResponsePage.aspx?id=QLz9PW6Tb0Ca04Vt3EQPqqA3GNYMvhJAom77RfjCtEBUOUZUNjdHN1hTWjFEMDI5WllaUjlDWlFHMC4u&origin=QRCode" target="_blank" rel="noopener">
+    <div class="icone">📢</div>
+    <div class="texto"><div class="titulo">Comunique</div><div class="desc">Canal de comunicação interna</div></div>
+    <div class="seta">›</div>
+  </a>
+
+  <a class="card formulario" href="https://forms.office.com/r/TEnEk0DMWU" target="_blank" rel="noopener">
+    <div class="icone">💧</div>
+    <div class="texto"><div class="titulo">Formulário de Vazamentos</div><div class="desc">Reportar vazamentos</div></div>
+    <div class="seta">›</div>
+  </a>
+
+  <a class="card formulario" href="https://forms.office.com/Pages/ResponsePage.aspx?id=QLz9PW6Tb0Ca04Vt3EQPqjuFSyqY3bBHiTX9Rf5HAMVURDdMN1VLSFJXMEc2WFBJQllHSVg1T1A0Mi4u" target="_blank" rel="noopener">
+    <div class="icone">🛡️</div>
+    <div class="texto"><div class="titulo">Relato de Segurança do Alimento</div><div class="desc">Registrar ocorrência</div></div>
+    <div class="seta">›</div>
+  </a>
+
+  <a class="card formulario" href="https://forms.office.com/r/XXVRgshEMC?origin=QRCode" target="_blank" rel="noopener">
+    <div class="icone">🎧</div>
+    <div class="texto"><div class="titulo">SAC</div><div class="desc">Serviço de Atendimento</div></div>
     <div class="seta">›</div>
   </a>
 
